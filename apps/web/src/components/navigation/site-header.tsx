@@ -4,10 +4,19 @@ import {MobileNav} from "./mobile-nav";
 import {SiteLogo} from "./site-logo";
 import Link from "next/link";
 import { getCategories } from "@/features/categories/services/category-queries";
+import { Category } from "@news/types";
+
 
 export async function SiteHeader() {
-  const categories =
-    await getCategories();
+  let categories: Category[] = [];
+  try {
+    categories = await getCategories();
+  } catch (error) {
+    console.error(
+      "Failed to load header categories",
+      error
+    );
+  }
   return (
     <header className="border-b">
       <Container>
