@@ -136,7 +136,7 @@ NEWS_API_PROVIDER=wordpress
 ### Clone Repository
 
 ```bash
-git clone https://github.com/your-username/news-platform.git
+git clone https://github.com/groot-2001/news-platform.git
 
 cd news-platform
 ```
