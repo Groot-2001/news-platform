@@ -1,10 +1,11 @@
 import type {Metadata} from "next";
 import {Geist, Geist_Mono} from "next/font/google";
 import "./globals.css";
-import { SiteHeader } from "@/components/navigation/site-header";
-import { SITE_CONFIG } from "@news/config";
-import { SiteFooter } from "@/components/navigation/site-footer";
-import { getCategories } from "@/features/categories/services/category-queries";
+import {SiteHeader} from "@/components/navigation/site-header";
+import {SITE_CONFIG} from "@news/config";
+import {SiteFooter} from "@/components/navigation/site-footer";
+import {getCategories} from "@/features/categories/services/category-queries";
+import {Category} from "@news/types";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,8 +27,13 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  let categories: Category[] = [];
 
-  const categories = await getCategories();
+  try {
+    categories = await getCategories();
+  } catch (error) {
+    console.error("Failed to load categories", error);
+  }
   return (
     <html
       lang="en"
@@ -38,7 +44,7 @@ export default async function RootLayout({
 
         <main className="flex-1">{children}</main>
 
-        <SiteFooter categories={categories}/>
+        <SiteFooter categories={categories} />
       </body>
     </html>
   );
