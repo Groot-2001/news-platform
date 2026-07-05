@@ -122,7 +122,8 @@ UI Components
 Create a `.env.local` file inside `apps/web`.
 
 ```env
-WORDPRESS_API_URL=http://cdm-news.local/wp-json/wp/v2
+WORDPRESS_API_URL=http://cdm-news.local/wp-json/wp/v2 
+//for testing purpose you can use local wordpress using localwp app create database and make site live then start using that url 
 
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
 
